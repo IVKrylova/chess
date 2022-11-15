@@ -4,28 +4,5 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(145, 70, 0);
-}
-
-.board {
-  width: calc(64px * 8);
-  height: calc(64px * 8);
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.cell {
-  width: 64px;
-  height: 64px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.cell_black {
-  background-color: #000;
-}
-
-.cell_white {
-  background-color: #fff;
+  background-color: rgb(195, 166, 213);
 }
