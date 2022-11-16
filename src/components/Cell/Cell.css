@@ -14,8 +14,23 @@
   background-color: rgb(241, 220, 185);
 }
 
+.cell_selected {
+  background-color: rgb(225, 145, 26);
+}
+
+.cell_available {
+  background-color: rgb(20, 230, 52);
+}
+
 .cell__figure {
   width: 48px;
   height: 48px;
   position: relative;
+}
+
+.cell__available-cell {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgb(20, 230, 52);
 }
