@@ -7,9 +7,15 @@
 }
 
 .cell_black {
-  background-color: rgb(29, 2, 61);
+  background-color: rgb(70, 24, 126);
 }
 
 .cell_white {
   background-color: rgb(241, 220, 185);
+}
+
+.cell__figure {
+  width: 48px;
+  height: 48px;
+  position: relative;
 }

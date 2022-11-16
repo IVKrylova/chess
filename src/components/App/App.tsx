@@ -10,6 +10,7 @@ const App = () => {
     const newBoard = new BoardClass();
 
     newBoard.initCells();
+    newBoard.addFigures();
     setBoard(newBoard);
   }
 
