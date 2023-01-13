@@ -28,10 +28,10 @@ export class CellClass {
   isEmptyVertical(target: CellClass): boolean {
     if (this.x !== target.x) return false;
 
-    const min = Math.min(this.x, target.x);
-    const max = Math.max(this.x, target.x);
-    for (let x = min + 1; x < max; x++) {
-      if (!this.board.getCell(this.x, x).isEmpty()) return false;
+    const min = Math.min(this.y, target.y);
+    const max = Math.max(this.y, target.y);
+    for (let y = min + 1; y < max; y++) {
+      if (!this.board.getCell(this.x, y).isEmpty()) return false;
     }
 
     return true;
@@ -40,10 +40,10 @@ export class CellClass {
   isEmptyHorizontal(target: CellClass): boolean {
     if (this.y !== target.y) return false;
 
-    const min = Math.min(this.y, target.y);
-    const max = Math.max(this.y, target.y);
-    for (let y = min + 1; y < max; y++) {
-      if (!this.board.getCell(this.y, y).isEmpty()) return false;
+    const min = Math.min(this.x, target.x);
+    const max = Math.max(this.x, target.x);
+    for (let x = min + 1; x < max; x++) {
+      if (!this.board.getCell(x, this.y).isEmpty()) return false;
     }
 
     return true;
@@ -56,7 +56,7 @@ export class CellClass {
     const dx = this.x < target.x ? 1 : -1;
 
     if (abcX !== abcY) return false;
-    for (let i = 0; i < abcY; i++) {
+    for (let i = 1; i < abcY; i++) {
       if (!this.board.getCell(this.x + dx * i, this.y + dy * i).isEmpty()) return false;
     }
 
