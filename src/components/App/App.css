@@ -1,8 +1,19 @@
 .app {
   height: 100vh;
   width: 100%;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  justify-items: center;
   align-items: center;
-  background-color: rgb(195, 166, 213);
+  grid-template-areas:
+    'title title'
+    'board state';
+  background-color: #C7EEFF;
+}
+
+.main-title {
+  grid-area: title;
+}
+
+.game-state {
+  grid-area: state;
 }

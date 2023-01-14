@@ -3,8 +3,7 @@ import { BoardClass } from '../../models/BoardClass';
 import { Colors } from '../../models/Colors';
 import { PlayerClass } from '../../models/PlayerClass';
 import Board from '../Board/Board';
-import LostFigures from '../LostFigures/LostFigures';
-import Timer from '../Timer/Timer';
+import GameState from '../GameState/GameState';
 import './App.css';
 
 const App = () => {
@@ -32,29 +31,18 @@ const App = () => {
 
   return (
     <div className='app'>
-      <h1 className='main-title'>Play Chess</h1>
+      <h1 className='main-title'>Chess Game</h1>
       <Board
         board={board}
         setBoard={setBoard}
         currentPlayer={currentPlayer}
         swapPlayer={swapPlayer}
       />
-      <section className='game-state'>
-        <Timer
-          restart={restart}
-          currentPlayer={currentPlayer}
-        />
-        <ul className='block-lost-figures'>
-          <LostFigures
-            title='White figures'
-            figures={board.lostWhiteFigures}
-          />
-          <LostFigures
-            title='Black figures'
-            figures={board.lostBlackFigures}
-          />
-        </ul>
-      </section>
+      <GameState
+        currentPlayer={currentPlayer}
+        board={board}
+        restart={restart}
+      />
     </div>
   );
 }
