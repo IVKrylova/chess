@@ -3,6 +3,7 @@ import { BoardClass } from '../../models/BoardClass';
 import { Colors } from '../../models/Colors';
 import { PlayerClass } from '../../models/PlayerClass';
 import Board from '../Board/Board';
+import LostFigures from '../LostFigures/LostFigures';
 import './App.css';
 
 const App = () => {
@@ -37,6 +38,16 @@ const App = () => {
         currentPlayer={currentPlayer}
         swapPlayer={swapPlayer}
       />
+      <ul className='block-lost-figures'>
+        <LostFigures
+          title='White figures'
+          figures={board.lostWhiteFigures}
+        />
+        <LostFigures
+          title='Black figures'
+          figures={board.lostBlackFigures}
+        />
+      </ul>
     </div>
   );
 }
