@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { BoardClass } from '../../models/BoardClass';
 import { CellClass } from '../../models/CellClass';
 import { PlayerClass } from '../../models/PlayerClass';
+import Coordinates from '../Coordinates/Coordinates';
 import Cell from '../Cell/Cell';
 import './Board.css';
 
@@ -30,7 +31,7 @@ const Board: FC<BoardProps> = ({ board, setBoard, currentPlayer, swapPlayer }) =
     setBoard(newBoard);
   }
 
-  const highlightCells = (): void  => {
+  const highlightCells = (): void => {
     board.highlightCells(selectedCell);
     updateBoard();
   }
@@ -40,21 +41,39 @@ const Board: FC<BoardProps> = ({ board, setBoard, currentPlayer, swapPlayer }) =
   }, [selectedCell]);
 
   return (
-    <section className='board'>
-      {board.cells.map((row, index) =>
-        <React.Fragment key={index}>
-          <>
-            {row.map(cell =>
-              <Cell
-                cell={cell}
-                key={cell.id}
-                selected={cell.x === selectedCell?.x && cell.y === selectedCell?.y}
-                click={click}
-              />
-            )}
-          </>
-        </React.Fragment>
-      )}
+    <section className='section-board'>
+      <Coordinates
+        coordinates={['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']}
+        classModifier='coordinates_x-top'
+      />
+      <ul className='board'>
+        {board.cells.map((row, index) =>
+          <React.Fragment key={index}>
+            <>
+              {row.map(cell =>
+                <Cell
+                  cell={cell}
+                  key={cell.id}
+                  selected={cell.x === selectedCell?.x && cell.y === selectedCell?.y}
+                  click={click}
+                />
+              )}
+            </>
+          </React.Fragment>
+        )}
+      </ul>
+      <Coordinates
+        coordinates={['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']}
+        classModifier='coordinates_x-bottom'
+      />
+      <Coordinates
+        coordinates={[1, 2, 3, 4, 5, 6, 7, 8]}
+        classModifier='coordinates_y-left'
+      />
+      <Coordinates
+        coordinates={[1, 2, 3, 4, 5, 6, 7, 8]}
+        classModifier='coordinates_y-right'
+      />
     </section>
   );
 }
