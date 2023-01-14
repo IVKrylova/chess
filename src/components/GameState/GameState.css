@@ -1,0 +1,23 @@
+.game-state {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 50px;
+}
+
+.current-player {
+  margin: 0;
+  font-size: 30px;
+}
+
+.current-player__player {
+  font-weight: bold;
+}
+
+.block-lost-figures {
+  padding: 0;
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 0;
+  row-gap: 15px;
+}

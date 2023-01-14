@@ -14,7 +14,9 @@ interface GameStateProps {
 const GameState: FC<GameStateProps> = ({ currentPlayer, restart, board }) => {
   return (
     <section className='game-state'>
-      <p className='current-player'>Current player {currentPlayer?.color}</p>
+      <p className='current-player'>
+        Current player <span className='current-player__player'>{currentPlayer?.color}</span>
+      </p>
       <Timer
         restart={restart}
         currentPlayer={currentPlayer}

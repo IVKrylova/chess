@@ -9,7 +9,7 @@ interface LostFiguresProps {
 
 const LostFigures: FC<LostFiguresProps> = ({ title, figures }) => {
   return (
-    <div className='lost-figures'>
+    <li className='lost-figures'>
       <h2 className='lost-figures__title'>{title}</h2>
       <ul className='lost-figures__list'>
         {figures.map(figure => {
@@ -21,7 +21,7 @@ const LostFigures: FC<LostFiguresProps> = ({ title, figures }) => {
           );
         })}
       </ul>
-    </div>
+    </li>
   );
 }
 

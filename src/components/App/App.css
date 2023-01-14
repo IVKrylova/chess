@@ -8,10 +8,14 @@
     'title title'
     'board state';
   background-color: #C7EEFF;
+  font-family: sans-serif, Arial, Helvetica;
 }
 
 .main-title {
   grid-area: title;
+  color: #333C4A;
+  margin: 0;
+  font-size: 42px;
 }
 
 .game-state {
