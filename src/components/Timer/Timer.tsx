@@ -17,15 +17,15 @@ const Timer: FC<TimerProps> = ({ currentPlayer, restart }) => {
     startTimer();
   }, [currentPlayer])
 
-  const decrementWhiteTimer = () => {
+  const decrementWhiteTimer = (): void  => {
     setWhiteTime(prev => prev - 1);
   }
 
-  const decrementBlackTimer = () => {
+  const decrementBlackTimer = (): void  => {
     setBlackTime(prev => prev - 1);
   }
 
-  const startTimer = () => {
+  const startTimer = (): void  => {
     if (timer.current) clearInterval(timer.current);
 
     const callback = currentPlayer?.color === Colors.WHITE ? decrementWhiteTimer : decrementBlackTimer;
@@ -33,7 +33,7 @@ const Timer: FC<TimerProps> = ({ currentPlayer, restart }) => {
     timer.current = setInterval(callback, 1000);
   }
 
-  const handleRestart = () => {
+  const handleRestart = (): void  => {
     setWhiteTime(300);
     setBlackTime(300);
     restart();

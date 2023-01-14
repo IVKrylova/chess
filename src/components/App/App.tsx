@@ -16,7 +16,7 @@ const App = () => {
     restart();
   }, []);
 
-  const restart = () => {
+  const restart = (): void => {
     const newBoard = new BoardClass();
 
     newBoard.initCells();
@@ -25,7 +25,7 @@ const App = () => {
     setCurrentPlayer(whitePlayer);
   }
 
-  const swapPlayer = () => {
+  const swapPlayer = (): void => {
     setCurrentPlayer(currentPlayer?.color === Colors.WHITE ? blackPlayer : whitePlayer);
   }
 

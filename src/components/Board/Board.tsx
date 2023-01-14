@@ -15,7 +15,7 @@ interface BoardProps {
 const Board: FC<BoardProps> = ({ board, setBoard, currentPlayer, swapPlayer }) => {
   const [selectedCell, setSelectedCell] = useState<CellClass | null>(null);
 
-  const click = (cell: CellClass) => {
+  const click = (cell: CellClass): void => {
     if (selectedCell && selectedCell !== cell && selectedCell.figure?.canMove(cell)) {
       selectedCell.moveFigure(cell);
       swapPlayer();
@@ -25,12 +25,12 @@ const Board: FC<BoardProps> = ({ board, setBoard, currentPlayer, swapPlayer }) =
     }
   }
 
-  const updateBoard = () => {
+  const updateBoard = (): void  => {
     const newBoard = board.getCopyBoard();
     setBoard(newBoard);
   }
 
-  const highlightCells = () => {
+  const highlightCells = (): void  => {
     board.highlightCells(selectedCell);
     updateBoard();
   }
