@@ -4,6 +4,7 @@ import { Colors } from '../../models/Colors';
 import { PlayerClass } from '../../models/PlayerClass';
 import Board from '../Board/Board';
 import LostFigures from '../LostFigures/LostFigures';
+import Timer from '../Timer/Timer';
 import './App.css';
 
 const App = () => {
@@ -38,16 +39,22 @@ const App = () => {
         currentPlayer={currentPlayer}
         swapPlayer={swapPlayer}
       />
-      <ul className='block-lost-figures'>
-        <LostFigures
-          title='White figures'
-          figures={board.lostWhiteFigures}
+      <section className='game-state'>
+        <Timer
+          restart={restart}
+          currentPlayer={currentPlayer}
         />
-        <LostFigures
-          title='Black figures'
-          figures={board.lostBlackFigures}
-        />
-      </ul>
+        <ul className='block-lost-figures'>
+          <LostFigures
+            title='White figures'
+            figures={board.lostWhiteFigures}
+          />
+          <LostFigures
+            title='Black figures'
+            figures={board.lostBlackFigures}
+          />
+        </ul>
+      </section>
     </div>
   );
 }
