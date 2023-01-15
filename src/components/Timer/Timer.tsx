@@ -17,16 +17,22 @@ const Timer: FC<TimerProps> = ({ currentPlayer, restart, winner, setWinner }) =>
 
   useEffect(() => {
     startTimer();
-  }, [currentPlayer])
+  }, [currentPlayer, winner]);
+
+  useEffect(() => {
+    if (whiteTime === 0) setWinner(Colors.BLACK);
+  }, [whiteTime]);
+
+  useEffect(() => {
+    if (blackTime === 0) setWinner(Colors.WHITE);
+  }, [blackTime]);
 
   const decrementWhiteTimer = (): void  => {
-    if (whiteTime === 0) setWinner(Colors.BLACK);
     setWhiteTime(prev => prev - 1);
   }
 
   const decrementBlackTimer = (): void  => {
-    if (blackTime === 0) setWinner(Colors.WHITE);
-    setBlackTime(prev => prev - 1);
+     setBlackTime(prev => prev - 1);
   }
 
   const startTimer = (): void  => {
@@ -35,11 +41,14 @@ const Timer: FC<TimerProps> = ({ currentPlayer, restart, winner, setWinner }) =>
     const callback = currentPlayer?.color === Colors.WHITE ? decrementWhiteTimer : decrementBlackTimer;
 
     timer.current = setInterval(callback, 1000);
+
+    if (winner) clearInterval(timer.current);
   }
 
   const handleRestart = (): void  => {
     setWhiteTime(300);
     setBlackTime(300);
+    setWinner(null);
     restart();
   }
 
