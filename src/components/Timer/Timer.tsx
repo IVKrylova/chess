@@ -16,7 +16,7 @@ const Timer: FC<TimerProps> = ({ currentPlayer, restart, winner, setWinner }) =>
   const [blackTime, setBlackTime] = useState<number>(300);
   const timer = useRef<null | ReturnType<typeof setInterval>>(null);
 
-  const { values, handleChange, errors, isValid, setIsValid } = useFormAndValidation();
+  const { values, handleChange, errors, isValid, setIsValid, resetForm } = useFormAndValidation();
 
   useEffect(() => {
     startTimer();
@@ -52,16 +52,19 @@ const Timer: FC<TimerProps> = ({ currentPlayer, restart, winner, setWinner }) =>
     if (winner) clearInterval(timer.current);
   }
 
-  const handleRestart = (): void  => {
-    setWhiteTime(300);
-    setBlackTime(300);
+  const handleRestart = (evt: React.FormEvent<HTMLFormElement>) => {
+    evt?.preventDefault();
+
+    values.time && setWhiteTime(values.time);
+    values.time && setBlackTime(values.time);
     setWinner(null);
     restart();
+    resetForm();
   }
 
   return (
     <div className='timer'>
-      <form className='form-restart' noValidate>
+      <form className='form-restart' noValidate onSubmit={handleRestart}>
         <input
           className='form-restart__input'
           name='time'
@@ -78,7 +81,6 @@ const Timer: FC<TimerProps> = ({ currentPlayer, restart, winner, setWinner }) =>
         <button
           className={`button-restart ${isValid ? '' : 'button-restart_disabled'}`}
           type='submit'
-          onSubmit={handleRestart}
           disabled={!isValid}
         >
           Restart game
