@@ -8,7 +8,34 @@
   font-size: 28px;
 }
 
+.form-restart {
+  display: grid;
+  row-gap: 5px;
+  width: 100%;
+}
+
+.form-restart__input {
+  border: #6a27d2 1px solid;
+  font-size: 20px;
+}
+
+.form-restart__input:focus {
+  outline: #6a27d2;
+}
+
+.form-restart__error {
+  visibility: hidden;
+  font-size: 16px;
+  height: 30px;
+  color: #0051a8;
+}
+
+.form-restart__error_active {
+  visibility: visible;
+}
+
 .button-restart {
+  display: block;
   margin: 0;
   padding: 15px 34px;
   overflow: hidden;
@@ -37,10 +64,28 @@
   transition: .5s ease;
   font-size: 16px;
 }
+
 .button-restart:hover:before {
   left: -10%;
   transition: .3s ease;
 }
+
 .button-restart:hover:after {
   left: -20%;
+}
+
+.button-restart_disabled {
+  background: #6a27d2;
+  cursor: default;
+}
+
+.button-restart_disabled:hover:before {
+  background: #6a27d2;
+  transition: none;
+  left: -110%;
+}
+
+.button-restart_disabled:hover:after {
+  background: #6a27d2;
+  left: -110%;
 }

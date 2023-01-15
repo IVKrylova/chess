@@ -1,6 +1,7 @@
 import { FC, useState, useRef, useEffect, Dispatch, SetStateAction } from 'react';
 import { Colors } from '../../models/Colors';
 import { PlayerClass } from '../../models/PlayerClass';
+import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 import './Timer.css';
 
 interface TimerProps {
@@ -15,6 +16,8 @@ const Timer: FC<TimerProps> = ({ currentPlayer, restart, winner, setWinner }) =>
   const [blackTime, setBlackTime] = useState<number>(300);
   const timer = useRef<null | ReturnType<typeof setInterval>>(null);
 
+  const { values, handleChange, errors, isValid, setIsValid } = useFormAndValidation();
+
   useEffect(() => {
     startTimer();
   }, [currentPlayer, winner]);
@@ -27,12 +30,16 @@ const Timer: FC<TimerProps> = ({ currentPlayer, restart, winner, setWinner }) =>
     if (blackTime === 0) setWinner(Colors.WHITE);
   }, [blackTime]);
 
+  useEffect(() => {
+    setIsValid(false);
+  }, [])
+
   const decrementWhiteTimer = (): void  => {
     setWhiteTime(prev => prev - 1);
   }
 
   const decrementBlackTimer = (): void  => {
-     setBlackTime(prev => prev - 1);
+    setBlackTime(prev => prev - 1);
   }
 
   const startTimer = (): void  => {
@@ -54,9 +61,29 @@ const Timer: FC<TimerProps> = ({ currentPlayer, restart, winner, setWinner }) =>
 
   return (
     <div className='timer'>
-      <button className='button-restart' type='button' onClick={handleRestart}>
-        Restart game
-      </button>
+      <form className='form-restart' noValidate>
+        <input
+          className='form-restart__input'
+          name='time'
+          type='number'
+          min='10'
+          required
+          placeholder='Player time (sec)'
+          value={values.time || ''}
+          onChange={handleChange}
+        />
+        <span className={`form-restart__error ${!isValid ? 'form-restart__error_active' : ''}`}>
+          {!isValid && errors.time}
+        </span>
+        <button
+          className={`button-restart ${isValid ? '' : 'button-restart_disabled'}`}
+          type='submit'
+          onSubmit={handleRestart}
+          disabled={!isValid}
+        >
+          Restart game
+        </button>
+      </form>
       <p className='timer__player'>
         {`White - ${whiteTime}`}
       </p>
