@@ -11,6 +11,7 @@ const App = () => {
   const [whitePlayer, setWhitePlayer] = useState(new PlayerClass(Colors.WHITE));
   const [blackPlayer, setBlackPlayer] = useState(new PlayerClass(Colors.BLACK));
   const [currentPlayer, setCurrentPlayer] = useState<PlayerClass | null>(null);
+  const [winner, setWinner] = useState<string | null>(null);
 
   useEffect(() => {
     restart();
@@ -42,6 +43,8 @@ const App = () => {
         currentPlayer={currentPlayer}
         board={board}
         restart={restart}
+        winner={winner}
+        setWinner={setWinner}
       />
     </div>
   );

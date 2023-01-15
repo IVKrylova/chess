@@ -4,6 +4,22 @@
   row-gap: 50px;
 }
 
+.victory-message {
+  margin: 0;
+  padding: 0;
+  font-size: 30px;
+  display: none;
+}
+
+.victory-message_visible {
+  display: block;
+}
+
+.victory-message_winner {
+  font-weight: bold;
+  font-size: 32px;
+}
+
 .current-player {
   margin: 0;
   font-size: 30px;
@@ -11,6 +27,10 @@
 
 .current-player__player {
   font-weight: bold;
+}
+
+.current-player_hidden {
+  display: none;
 }
 
 .block-lost-figures {

@@ -1,4 +1,4 @@
-import { FC, useState, useRef, useEffect } from 'react';
+import { FC, useState, useRef, useEffect, Dispatch, SetStateAction } from 'react';
 import { Colors } from '../../models/Colors';
 import { PlayerClass } from '../../models/PlayerClass';
 import './Timer.css';
@@ -6,9 +6,11 @@ import './Timer.css';
 interface TimerProps {
   currentPlayer: PlayerClass | null,
   restart: () => void,
+  winner: string | null,
+  setWinner: Dispatch<SetStateAction<string | null>>,
 }
 
-const Timer: FC<TimerProps> = ({ currentPlayer, restart }) => {
+const Timer: FC<TimerProps> = ({ currentPlayer, restart, winner, setWinner }) => {
   const [whiteTime, setWhiteTime] = useState<number>(300);
   const [blackTime, setBlackTime] = useState<number>(300);
   const timer = useRef<null | ReturnType<typeof setInterval>>(null);
@@ -18,10 +20,12 @@ const Timer: FC<TimerProps> = ({ currentPlayer, restart }) => {
   }, [currentPlayer])
 
   const decrementWhiteTimer = (): void  => {
+    if (whiteTime === 0) setWinner(Colors.BLACK);
     setWhiteTime(prev => prev - 1);
   }
 
   const decrementBlackTimer = (): void  => {
+    if (blackTime === 0) setWinner(Colors.WHITE);
     setBlackTime(prev => prev - 1);
   }
 
